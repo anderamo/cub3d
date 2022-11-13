@@ -21,7 +21,7 @@ CC = gcc
 
 INC = -I./includes
 
-#FLAGS	= -Wall -Wextra -Werror
+FLAGS	= -Wall -Wextra -Werror
 
 all: $(NAME)
 

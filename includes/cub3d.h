@@ -6,7 +6,7 @@
 /*   By: aamorin- <aamorin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 14:14:35 by aamorin-          #+#    #+#             */
-/*   Updated: 2022/11/13 17:33:59 by aamorin-         ###   ########.fr       */
+/*   Updated: 2022/11/13 19:41:49 by aamorin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,13 @@ typedef struct s_create_map {
 	int		drawend;
 }		t_create_map;
 
+typedef struct s_check_map {
+	int		y;
+	int		x;
+	char	c;
+	char	last_char;
+}		t_check_map;
+
 int				c_file(char *str);
 int				RGB(int r, int g, int b);
 void			print_map(char **map);
@@ -145,6 +152,6 @@ int				rgb(int r, int g, int b);
 int				destroy_map_struct(t_map *m_val);
 t_create_map	put_texturize_pos_color(t_create_map ray, t_map *m_val, int x);
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
-int				check_map(void *map, int heigth, int width);
+int				check_map(t_map *m, int heigth, int width, t_check_map c);
 
 #endif

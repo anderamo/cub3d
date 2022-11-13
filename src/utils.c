@@ -91,6 +91,7 @@ int	texturize_walls(t_map *map, uint8_t i)
 				&map->wall[i].endian);
 		i++;
 	}
+	mlx_do_key_autorepeatoff(map->mlx_ptr);
 	return (0);
 }
 
