@@ -7,6 +7,8 @@ MANDATORY	=	main_cub3d.c \
 				src/move.c \
 				src/parse.c \
 				src/check.c \
+				src/check_2.c \
+				src/n_e_w_s.c \
 				src/key_manager.c \
 				src/utils.c \
 				src/destroy.c \

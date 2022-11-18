@@ -6,7 +6,7 @@
 /*   By: aamorin- <aamorin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 14:14:35 by aamorin-          #+#    #+#             */
-/*   Updated: 2022/11/13 19:41:49 by aamorin-         ###   ########.fr       */
+/*   Updated: 2022/11/18 16:58:42 by aamorin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,5 +153,7 @@ int				destroy_map_struct(t_map *m_val);
 t_create_map	put_texturize_pos_color(t_create_map ray, t_map *m_val, int x);
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int				check_map(t_map *m, int heigth, int width, t_check_map c);
+void			n_e_w_s_2(t_map *m, int y, int x);
+int				n_e_w_s(t_map *m, t_check_map check);
 
 #endif
