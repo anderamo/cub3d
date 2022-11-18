@@ -6,7 +6,7 @@
 /*   By: aamorin- <aamorin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 19:28:14 by aamorin-          #+#    #+#             */
-/*   Updated: 2021/07/20 18:13:46 by aamorin-         ###   ########.fr       */
+/*   Updated: 2022/11/18 17:02:42 by aamorin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (!s)
 		return (NULL);
 	s_size = ft_strlen((char *)s);
-    if(start > s_size)
-        return(ft_strdup(""));
-    if (s_size < len)
-        len = s_size;
+	if (start > s_size)
+		return (ft_strdup(""));
+	if (s_size < len)
+		len = s_size;
 	array = malloc((len * sizeof(char)) + 1);
 	if (!(array))
 		return (NULL);

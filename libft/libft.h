@@ -6,7 +6,7 @@
 /*   By: aamorin- <aamorin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 10:59:47 by aamorin-          #+#    #+#             */
-/*   Updated: 2021/12/02 12:36:55 by aamorin-         ###   ########.fr       */
+/*   Updated: 2022/11/18 17:02:10 by aamorin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,6 @@ void			ft_lstclear(t_list **lst, void (*del)(void *));
 void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
 					void (*del)(void *));
-int             ft_freetab(char **tab);
-int             ft_freetab_int(int **tab, int size);
+int				ft_freetab(char **tab);
+int				ft_freetab_int(int **tab, int size);
 #endif

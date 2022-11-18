@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_freetab_int.c                                   :+:      :+:    :+:   */
+/*   check_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aamorin- <aamorin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/24 17:09:08 by aamorin-          #+#    #+#             */
-/*   Updated: 2022/11/18 17:06:07 by aamorin-         ###   ########.fr       */
+/*   Created: 2022/11/13 17:24:49 by aamorin-          #+#    #+#             */
+/*   Updated: 2022/11/18 16:59:28 by aamorin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/cub3d.h"
 
-int	ft_freetab_int(int **tab, int size)
+int	c_file(char *file_str)
 {
-	int	i;
+	size_t	file_str_len;
 
-	if (!tab || !(*tab))
-		return (0);
-	i = 0;
-	while (size > i)
+	file_str_len = ft_strlen(file_str);
+	if (file_str_len < 4)
 	{
-		free(tab[i]);
-		i++;
+		printf("Wrong file name)\n");
+		return (-1);
 	}
-	free(tab);
-	return (1);
+	if (ft_strcmp(file_str + (file_str_len - 4), FILE_EXTENSION) != 0)
+	{
+		printf("Wrong file extension (.cub)\n");
+		return (-1);
+	}
+	return (0);
 }
