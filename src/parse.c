@@ -6,7 +6,7 @@
 /*   By: aamorin- <aamorin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 17:15:09 by aamorin-          #+#    #+#             */
-/*   Updated: 2022/11/18 17:26:25 by aamorin-         ###   ########.fr       */
+/*   Updated: 2022/11/18 17:37:57 by aamorin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ int	p_file(t_map *m_val, char *file_str, char *line_item, char *line)
 		return (parse_return(line));
 	while (1)
 	{
-		*line = get_next_line(m_val->fd);
-		if (*line == NULL)
+		line = get_next_line(m_val->fd);
+		if (line == NULL)
 			break ;
 		tmp_line = line;
 		line_str_pos = 0;
@@ -85,7 +85,6 @@ int	p_file(t_map *m_val, char *file_str, char *line_item, char *line)
 		{
 			if (line != NULL)
 				free(line);
-			line = NULL;
 			continue ;
 		}
 		tmp_line[ft_strlen(tmp_line) - 1] = '\0';
@@ -94,53 +93,37 @@ int	p_file(t_map *m_val, char *file_str, char *line_item, char *line)
 			line_item = strtok_r(tmp_line, " ", &tmp_line);
 			if (line_item == NULL)
 				break ;
-			if (line_str_pos == 0)
+			if (line_str_pos++ == 0)
 			{
 				if (ft_strcmp(line_item, NO_STR_SEARCH) == 0)
-				{
 					if (get_no_str(m_val, line_item, &tmp_line) == -1)
 						return (parse_return(line));
-				}
-				else if (ft_strcmp(line_item, SO_STR_SEARCH) == 0)
-				{
+				if (ft_strcmp(line_item, SO_STR_SEARCH) == 0)
 					if (get_so_str(m_val, line_item, &tmp_line) == -1)
 						return (parse_return(line));
-				}
-				else if (ft_strcmp(line_item, WE_STR_SEARCH) == 0)
-				{
+				if (ft_strcmp(line_item, WE_STR_SEARCH) == 0)
 					if (get_we_str(m_val, line_item, &tmp_line) == -1)
 						return (parse_return(line));
-				}
-				else if (ft_strcmp(line_item, EA_STR_SEARCH) == 0)
-				{
+				if (ft_strcmp(line_item, EA_STR_SEARCH) == 0)
 					if (get_ea_str(m_val, line_item, &tmp_line) == -1)
 						return (parse_return(line));
-				}
-				else if (ft_strcmp(line_item, FLOOR_STR_SEARCH) == 0)
-				{
+				if (ft_strcmp(line_item, FLOOR_STR_SEARCH) == 0)
 					if (get_floor_str(m_val, line_item, &tmp_line) == -1)
 						return (parse_return(line));
-				}
-				else if (ft_strcmp(line_item, ROOF_STR_SEARCH) == 0)
-				{
+				if (ft_strcmp(line_item, ROOF_STR_SEARCH) == 0)
 					if (get_roof_str(m_val, line_item, &tmp_line) == -1)
 						return (parse_return(line));
-				}
 				else
 				{
 					p_map(m_val, &tmp_line, &line, line_item);
 					break ;
 				}
 			}
-			line_str_pos++;
 		}
 		if (line_str_pos > 1)
 			return (parse_return(line));
 		if (line != NULL)
 			free(line);
-		line = NULL;
 	}
-	if (line != NULL)
-		free(line);
 	return (0);
 }
