@@ -65,9 +65,6 @@ typedef struct s_map {
 	int		height;
 	void	*mlx_ptr;
 	void	*w_ptr;
-	int		p_x;
-	int		p_y;
-	int		movements;
 	double	posx;
 	double	posy;
 	double	dirx;
