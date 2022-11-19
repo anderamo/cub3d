@@ -68,33 +68,6 @@ t_create_map	how_much_draw(t_create_map ray, t_map *m_val)
 	return (ray);
 }
 
-int	texturize_walls(t_map *map, uint8_t i)
-{
-	map->pov.i_ptr = mlx_xpm_file_to_image(map->mlx_ptr,
-			"./textures/snipe_pov.xpm", &map->pov.i_w, &map->pov.i_h);
-	mlx_put_image_to_window(map->mlx_ptr, map->w_ptr, map->pov.i_ptr, 290, 400);
-	map->wall[0].i_ptr = mlx_xpm_file_to_image(map->mlx_ptr,
-			map->no_str, &map->wall[0].i_w, &map->wall[0].i_h);
-	map->wall[1].i_ptr = mlx_xpm_file_to_image(map->mlx_ptr,
-			map->so_str, &map->wall[1].i_w, &map->wall[1].i_h);
-	map->wall[2].i_ptr = mlx_xpm_file_to_image(map->mlx_ptr,
-			map->ea_str, &map->wall[2].i_w, &map->wall[2].i_h);
-	map->wall[3].i_ptr = mlx_xpm_file_to_image(map->mlx_ptr,
-			map->we_str, &map->wall[3].i_w, &map->wall[3].i_h);
-	if (map->wall[0].i_ptr == NULL || map->wall[1].i_ptr == NULL
-		|| map->wall[2].i_ptr == NULL || map->wall[3].i_ptr == NULL)
-		return (-1);
-	while (i < 4)
-	{
-		map->wall[i].addr = mlx_get_data_addr(map->wall[i].i_ptr,
-				&map->wall[i].b_pixel, &map->wall[i].l_len,
-				&map->wall[i].endian);
-		i++;
-	}
-	mlx_do_key_autorepeatoff(map->mlx_ptr);
-	return (0);
-}
-
 t_create_map	determine_position(t_create_map ray, t_map *m_val)
 {
 	if (ray.raydirx < 0)

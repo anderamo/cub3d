@@ -12,6 +12,36 @@
 
 #include "../includes/cub3d.h"
 
+int	destroy_map_struct_2(t_map *m_val)
+{
+	if (m_val->map != NULL)
+		ft_freetab(m_val->map);
+	if (m_val->img.i_ptr != NULL)
+		mlx_destroy_image(m_val->mlx_ptr, m_val->img.i_ptr);
+	m_val->img.i_ptr = NULL;
+	if (m_val->pov_shot.i_ptr != NULL)
+		mlx_destroy_image(m_val->mlx_ptr, m_val->pov_shot.i_ptr);
+	m_val->pov_shot.i_ptr = NULL;
+	if (m_val->pov.i_ptr != NULL)
+		mlx_destroy_image(m_val->mlx_ptr, m_val->pov.i_ptr);
+	m_val->pov.i_ptr = NULL;
+	if (m_val->wall[0].i_ptr != NULL)
+		mlx_destroy_image(m_val->mlx_ptr, m_val->wall[0].i_ptr);
+	m_val->wall[0].i_ptr = NULL;
+	if (m_val->wall[1].i_ptr != NULL)
+		mlx_destroy_image(m_val->mlx_ptr, m_val->wall[1].i_ptr);
+	m_val->wall[1].i_ptr = NULL;
+	if (m_val->wall[2].i_ptr != NULL)
+		mlx_destroy_image(m_val->mlx_ptr, m_val->wall[2].i_ptr);
+	m_val->wall[2].i_ptr = NULL;
+	if (m_val->wall[3].i_ptr != NULL)
+		mlx_destroy_image(m_val->mlx_ptr, m_val->wall[3].i_ptr);
+	m_val->wall[3].i_ptr = NULL;
+	free(m_val);
+	return (0);
+}
+
+
 int	destroy_map_struct(t_map *m_val)
 {
 	if (m_val->ea_str != NULL)
@@ -32,11 +62,6 @@ int	destroy_map_struct(t_map *m_val)
 	if (m_val->roof_str != NULL)
 		free(m_val->roof_str);
 	m_val->roof_str = NULL;
-	if (m_val->map != NULL)
-		ft_freetab(m_val->map);
-	if (m_val->img.i_ptr != NULL)
-		mlx_destroy_image(m_val->mlx_ptr, m_val->img.i_ptr);
-	m_val->img.i_ptr = NULL;
-	free(m_val);
+	destroy_map_struct_2(m_val);
 	return (-1);
 }

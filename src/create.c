@@ -50,11 +50,8 @@ int	create_map(t_map *m_val, int i, int x)
 	}
 	mlx_put_image_to_window(m_val->mlx_ptr, m_val->w_ptr,
 		m_val->img.i_ptr, 0, 0);
-	m_val->pov.i_ptr = mlx_xpm_file_to_image(m_val->mlx_ptr,
-			"./textures/snipe_pov.xpm", &m_val->pov.i_w, &m_val->pov.i_h);
 	mlx_put_image_to_window(m_val->mlx_ptr, m_val->w_ptr,
 		m_val->pov.i_ptr, 290, 400);
-	mlx_destroy_image(m_val->mlx_ptr, m_val->pov.i_ptr);
 	return (0);
 }
 
