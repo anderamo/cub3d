@@ -12,29 +12,43 @@
 
 #include "../includes/cub3d.h"
 
-int	p_file_3(t_map *m_val, char *line_item, char **tmp_line, char **line)
+int	p_file_4(t_map *m_val, char *line_item, char **tmp_line)
 {
 	if (ft_strcmp(line_item, NO_STR_SEARCH) == 0)
 	{
 		if (get_no_str(m_val, line_item, tmp_line) == -1)
 			return (-1);
+		return (0);
 	}
 	else if (ft_strcmp(line_item, SO_STR_SEARCH) == 0)
 	{
 		if (get_so_str(m_val, line_item, tmp_line) == -1)
 			return (-1);
+		return (0);
 	}
 	else if (ft_strcmp(line_item, WE_STR_SEARCH) == 0)
 	{
 		if (get_we_str(m_val, line_item, tmp_line) == -1)
 			return (-1);
+		return (0);
 	}
 	else if (ft_strcmp(line_item, EA_STR_SEARCH) == 0)
 	{
 		if (get_ea_str(m_val, line_item, tmp_line) == -1)
 			return (-1);
+		return (0);
 	}
-	else if (ft_strcmp(line_item, FLOOR_STR_SEARCH) == 0)
+	return (1);
+}
+
+int	p_file_3(t_map *m_val, char *line_item, char **tmp_line, char **line)
+{
+	int	return_value;
+
+	return_value = p_file_4(m_val, line_item, tmp_line);
+	if (return_value == -1 || return_value == 0)
+		return (return_value);
+	if (ft_strcmp(line_item, FLOOR_STR_SEARCH) == 0)
 	{
 		if (get_floor_str(m_val, line_item, tmp_line) == -1)
 			return (-1);
@@ -55,7 +69,7 @@ int	p_file_3(t_map *m_val, char *line_item, char **tmp_line, char **line)
 int	p_file_2(char **line, char *tmp_line, int line_str_pos, t_map *m_val)
 {
 	char	*line_item;
-	int 	return_value;
+	int		return_value;
 
 	while (1)
 	{

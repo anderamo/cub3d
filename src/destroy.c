@@ -14,11 +14,6 @@
 
 int	destroy_map_struct_2(t_map *m_val)
 {
-	if (m_val->map != NULL)
-		ft_freetab(m_val->map);
-	if (m_val->img.i_ptr != NULL)
-		mlx_destroy_image(m_val->mlx_ptr, m_val->img.i_ptr);
-	m_val->img.i_ptr = NULL;
 	if (m_val->pov_shot.i_ptr != NULL)
 		mlx_destroy_image(m_val->mlx_ptr, m_val->pov_shot.i_ptr);
 	m_val->pov_shot.i_ptr = NULL;
@@ -37,10 +32,13 @@ int	destroy_map_struct_2(t_map *m_val)
 	if (m_val->wall[3].i_ptr != NULL)
 		mlx_destroy_image(m_val->mlx_ptr, m_val->wall[3].i_ptr);
 	m_val->wall[3].i_ptr = NULL;
+	if (m_val->mlx_ptr != NULL && m_val->w_ptr != NULL)
+		mlx_destroy_window(m_val->mlx_ptr, m_val->w_ptr);
+	if (m_val->mlx_ptr != NULL)
+		free(m_val->mlx_ptr);
 	free(m_val);
-	return (0);
+	return (-1);
 }
-
 
 int	destroy_map_struct(t_map *m_val)
 {
@@ -62,6 +60,10 @@ int	destroy_map_struct(t_map *m_val)
 	if (m_val->roof_str != NULL)
 		free(m_val->roof_str);
 	m_val->roof_str = NULL;
-	destroy_map_struct_2(m_val);
-	return (-1);
+	if (m_val->map != NULL)
+		ft_freetab(m_val->map);
+	if (m_val->img.i_ptr != NULL)
+		mlx_destroy_image(m_val->mlx_ptr, m_val->img.i_ptr);
+	m_val->img.i_ptr = NULL;
+	return (destroy_map_struct_2(m_val));
 }

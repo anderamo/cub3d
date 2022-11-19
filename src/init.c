@@ -32,6 +32,23 @@ t_create_map	init_ray_struct(t_create_map ray, t_map *m_val, int x)
 	return (ray);
 }
 
+t_map	*init_new_map_struc_2(t_map *m_val)
+{
+	m_val->right = 0;
+	m_val->move = 0.05;
+	m_val->rot = 0.05;
+	m_val->img.i_ptr = NULL;
+	m_val->pov.i_ptr = NULL;
+	m_val->pov_shot.i_ptr = NULL;
+	m_val->wall[0].i_ptr = NULL;
+	m_val->wall[1].i_ptr = NULL;
+	m_val->wall[2].i_ptr = NULL;
+	m_val->wall[3].i_ptr = NULL;
+	m_val->mlx_ptr = NULL;
+	m_val->w_ptr = NULL;
+	return (m_val);
+}
+
 t_map	*init_new_map_struct(void)
 {
 	t_map	*m_val;
@@ -54,9 +71,6 @@ t_map	*init_new_map_struct(void)
 	m_val->fwd = 0;
 	m_val->bwd = 0;
 	m_val->left = 0;
-	m_val->right = 0;
-	m_val->move = 0.05;
-	m_val->rot = 0.05;
-	m_val->img.i_ptr = NULL;
+	m_val = init_new_map_struc_2(m_val);
 	return (m_val);
 }

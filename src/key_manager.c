@@ -14,7 +14,6 @@
 
 int	close_win_x(t_map *vars)
 {
-	mlx_destroy_window(vars->mlx_ptr, vars->w_ptr);
 	destroy_map_struct(vars);
 	exit(1);
 	return (-1);
@@ -52,7 +51,6 @@ int	key_press_manager(int keycode, void *param)
 	m_val = (t_map *)param;
 	if (keycode == '5')
 	{
-		mlx_destroy_window(m_val->mlx_ptr, m_val->w_ptr);
 		destroy_map_struct(m_val);
 		exit(1);
 	}
