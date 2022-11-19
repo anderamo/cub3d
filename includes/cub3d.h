@@ -14,7 +14,7 @@
 # define CUB3D_H
 # include "../minilibx/mlx.h"
 # include "../libft/libft.h"
-#include "../gnl/get_next_line.h"
+# include "../gnl/get_next_line.h"
 # include <fcntl.h>
 # include <stdio.h>
 # include <unistd.h>
@@ -77,6 +77,7 @@ typedef struct s_map {
 	bool	bwd;
 	bool	left;
 	bool	right;
+	bool	map_created;
 }		t_map;
 
 typedef struct s_create_map {

@@ -28,7 +28,12 @@ char	*p_map_2(char **line, t_map *m_val, char *buffer_map)
 		if (*line == NULL)
 			break ;
 		if (check_is_empty_line(*line) == 0)
+		{
+			if (*line != NULL)
+				free(*line);
+			*line = NULL;
 			break ;
+		}
 		buffer_map = ft_strjoin(buffer_map, *line);
 		if (m_val->width < (int)ft_strlen(*line))
 			m_val->width = (int)ft_strlen(*line);
@@ -59,6 +64,7 @@ void	p_map(t_map	*m_val, char **tmp_line, char **line, char *line_item)
 {
 	char	*buffer_map;
 
+	m_val->map_created = 1;
 	if (*tmp_line != NULL)
 		*line = ft_strjoin_space(*line, *tmp_line);
 	m_val->width = (int)ft_strlen(*line);

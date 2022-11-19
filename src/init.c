@@ -46,6 +46,7 @@ t_map	*init_new_map_struc_2(t_map *m_val)
 	m_val->wall[3].i_ptr = NULL;
 	m_val->mlx_ptr = NULL;
 	m_val->w_ptr = NULL;
+	m_val->map_created = 0;
 	return (m_val);
 }
 

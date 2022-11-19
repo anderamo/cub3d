@@ -18,27 +18,27 @@ int	p_file_4(t_map *m_val, char *line_item, char **tmp_line)
 	{
 		if (get_no_str(m_val, line_item, tmp_line) == -1)
 			return (-1);
-		return (0);
+		return (1);
 	}
 	else if (ft_strcmp(line_item, SO_STR_SEARCH) == 0)
 	{
 		if (get_so_str(m_val, line_item, tmp_line) == -1)
 			return (-1);
-		return (0);
+		return (1);
 	}
 	else if (ft_strcmp(line_item, WE_STR_SEARCH) == 0)
 	{
 		if (get_we_str(m_val, line_item, tmp_line) == -1)
 			return (-1);
-		return (0);
+		return (1);
 	}
 	else if (ft_strcmp(line_item, EA_STR_SEARCH) == 0)
 	{
 		if (get_ea_str(m_val, line_item, tmp_line) == -1)
 			return (-1);
-		return (0);
+		return (1);
 	}
-	return (1);
+	return (0);
 }
 
 int	p_file_3(t_map *m_val, char *line_item, char **tmp_line, char **line)
@@ -46,9 +46,9 @@ int	p_file_3(t_map *m_val, char *line_item, char **tmp_line, char **line)
 	int	return_value;
 
 	return_value = p_file_4(m_val, line_item, tmp_line);
-	if (return_value == -1 || return_value == 0)
+	if (return_value == -1 || return_value == 1)
 		return (return_value);
-	if (ft_strcmp(line_item, FLOOR_STR_SEARCH) == 0)
+	else if (ft_strcmp(line_item, FLOOR_STR_SEARCH) == 0)
 	{
 		if (get_floor_str(m_val, line_item, tmp_line) == -1)
 			return (-1);
@@ -60,7 +60,10 @@ int	p_file_3(t_map *m_val, char *line_item, char **tmp_line, char **line)
 	}
 	else
 	{
-		p_map(m_val, tmp_line, line, line_item);
+		if (m_val->map_created == 0)
+			p_map(m_val, tmp_line, line, line_item);
+		else
+			return (-1);
 		return (0);
 	}
 	return (1);
@@ -76,7 +79,7 @@ int	p_file_2(char **line, char *tmp_line, int line_str_pos, t_map *m_val)
 		line_item = strtok_r(tmp_line, " ", &tmp_line);
 		if (line_item == NULL)
 			break ;
-		if (line_str_pos++ == 0)
+		if (line_str_pos == 0)
 		{
 			return_value = p_file_3(m_val, line_item, &tmp_line, line);
 			if (return_value == -1)
@@ -84,6 +87,7 @@ int	p_file_2(char **line, char *tmp_line, int line_str_pos, t_map *m_val)
 			else if (return_value == 0)
 				break ;
 		}
+		line_str_pos++;
 	}
 	if (line_str_pos > 1)
 		return (-1);
