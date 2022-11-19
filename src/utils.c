@@ -83,7 +83,7 @@ int	texturize_walls(t_map *map, uint8_t i)
 			map->we_str, &map->wall[3].i_w, &map->wall[3].i_h);
 	if (map->wall[0].i_ptr == NULL || map->wall[1].i_ptr == NULL
 		|| map->wall[2].i_ptr == NULL || map->wall[3].i_ptr == NULL)
-		return (destroy_map_struct(map));
+		return (-1);
 	while (i < 4)
 	{
 		map->wall[i].addr = mlx_get_data_addr(map->wall[i].i_ptr,

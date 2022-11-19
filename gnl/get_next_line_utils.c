@@ -33,13 +33,11 @@ void	*ft_memcpy(void *destination, const void *source, size_t num)
 
 void	*ft_memmove(void *destination, const void *source, size_t num)
 {
-	size_t				i;
 	unsigned char		*dest;
 	const unsigned char	*src;
 
 	if (destination == NULL && source == NULL)
 		return (NULL);
-	i = 0;
 	dest = (unsigned char *)destination;
 	src = (const unsigned char *)source;
 	if (dest > src)
@@ -86,9 +84,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	size_t	s1_size;
 	size_t	s2_size;
 	size_t	total_size;
-	size_t	i;
 
-	i = 0;
 	if (!s1)
 		return (ft_strdup(s2));
 	if (!s2)

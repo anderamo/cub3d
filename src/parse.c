@@ -19,8 +19,9 @@ int	parse_return(char *line)
 	return (-1);
 }
 
-char	*p_map_2(char *line, t_map *m_val, char *buffer_map)
+char	*p_map_2(char **line, t_map *m_val, char *buffer_map)
 {
+    m_val->height = 1;
 	while (1)
 	{
 		*line = get_next_line(m_val->fd);
@@ -45,7 +46,6 @@ void	p_map(t_map	*m_val, char **tmp_line, char **line, char *line_item)
 	char	*buffer_map;
 
 	index = 0;
-	m_val->height = 1;
 	if (*tmp_line != NULL)
 		*line = ft_strjoin_space(*line, *tmp_line);
 	m_val->width = (int)ft_strlen(*line);
@@ -53,16 +53,19 @@ void	p_map(t_map	*m_val, char **tmp_line, char **line, char *line_item)
 	buffer_map = ft_strdup_free(*line);
 	buffer_map = p_map_2(line, m_val, buffer_map);
 	m_val->map = (char **) malloc(sizeof(char *) * (m_val->height + 1));
+    *tmp_line = buffer_map;
 	while (1)
 	{
-		line_item = strtok_r(buffer_map, "\n", &buffer_map);
+		line_item = strtok_r(*tmp_line, "\n", &(*tmp_line));
 		if (line_item == NULL)
 			break ;
 		m_val->map[index] = (char *)malloc(sizeof(char) * m_val->width + 1);
 		ft_memset(m_val->map[index], ' ', m_val->width);
 		ft_memcpy(m_val->map[index], line_item, ft_strlen(line_item));
-		m_val->map[index++][m_val->width] = '\0';
+		m_val->map[index][m_val->width] = '\0';
+        index++;
 	}
+    free(buffer_map);
 	m_val->map[m_val->height] = NULL;
 }
 
@@ -96,23 +99,35 @@ int	p_file(t_map *m_val, char *file_str, char *line_item, char *line)
 			if (line_str_pos++ == 0)
 			{
 				if (ft_strcmp(line_item, NO_STR_SEARCH) == 0)
-					if (get_no_str(m_val, line_item, &tmp_line) == -1)
-						return (parse_return(line));
-				if (ft_strcmp(line_item, SO_STR_SEARCH) == 0)
-					if (get_so_str(m_val, line_item, &tmp_line) == -1)
-						return (parse_return(line));
-				if (ft_strcmp(line_item, WE_STR_SEARCH) == 0)
+                {
+                    if (get_no_str(m_val, line_item, &tmp_line) == -1)
+                        return (parse_return(line));
+                }
+				else if (ft_strcmp(line_item, SO_STR_SEARCH) == 0)
+				{
+                    if (get_so_str(m_val, line_item, &tmp_line) == -1)
+                        return (parse_return(line));
+                }
+                else if (ft_strcmp(line_item, WE_STR_SEARCH) == 0)
+				{
 					if (get_we_str(m_val, line_item, &tmp_line) == -1)
 						return (parse_return(line));
-				if (ft_strcmp(line_item, EA_STR_SEARCH) == 0)
+				}
+				else if (ft_strcmp(line_item, EA_STR_SEARCH) == 0)
+				{
 					if (get_ea_str(m_val, line_item, &tmp_line) == -1)
 						return (parse_return(line));
-				if (ft_strcmp(line_item, FLOOR_STR_SEARCH) == 0)
+				}
+				else if (ft_strcmp(line_item, FLOOR_STR_SEARCH) == 0)
+				{
 					if (get_floor_str(m_val, line_item, &tmp_line) == -1)
 						return (parse_return(line));
-				if (ft_strcmp(line_item, ROOF_STR_SEARCH) == 0)
-					if (get_roof_str(m_val, line_item, &tmp_line) == -1)
-						return (parse_return(line));
+				}
+				else if (ft_strcmp(line_item, ROOF_STR_SEARCH) == 0)
+                {
+                    if (get_roof_str(m_val, line_item, &tmp_line) == -1)
+                        return (parse_return(line));
+                }
 				else
 				{
 					p_map(m_val, &tmp_line, &line, line_item);
