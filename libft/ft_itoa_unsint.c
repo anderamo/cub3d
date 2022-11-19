@@ -16,10 +16,7 @@ static size_t	get_int_size(unsigned int n)
 {
 	size_t	int_size;
 
-	if (n < 0)
-		int_size = 1;
-	else
-		int_size = 0;
+    int_size = 0;
 	while (1)
 	{
 		n /= 10;

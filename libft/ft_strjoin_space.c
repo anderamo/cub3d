@@ -18,9 +18,7 @@ char	*ft_strjoin_space(char const *s1, char const *s2)
 	size_t	s1_size;
 	size_t	s2_size;
 	size_t	total_size;
-	size_t	i;
 
-	i = 0;
 	if (!s1 || s1 == NULL)
 		return (ft_strdup(s2));
 	if (!s2)
