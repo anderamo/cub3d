@@ -40,12 +40,12 @@ void	key_add_pov(t_map *m_val)
 {
 	mlx_clear_window(m_val->mlx_ptr, m_val->w_ptr);
 	mlx_put_image_to_window(m_val->mlx_ptr, m_val->w_ptr,
-							m_val->img.i_ptr, 0, 0);
+		m_val->img.i_ptr, 0, 0);
 	m_val->pov_shot.i_ptr = mlx_xpm_file_to_image(m_val->mlx_ptr,
-												  "./textures/snipe_pov_shot.xpm",
-												  &m_val->pov_shot.i_w, &m_val->pov_shot.i_h);
+			"./textures/snipe_pov_shot.xpm",
+			&m_val->pov_shot.i_w, &m_val->pov_shot.i_h);
 	mlx_put_image_to_window(m_val->mlx_ptr, m_val->w_ptr,
-							m_val->pov_shot.i_ptr, 290, 410);
+		m_val->pov_shot.i_ptr, 290, 410);
 }
 
 int	key_press_manager(int keycode, void *param)

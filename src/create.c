@@ -12,6 +12,24 @@
 
 #include "../includes/cub3d.h"
 
+t_create_map	create_map_2(int i, t_map *m_val, t_create_map ray, int x)
+{
+	i = 0;
+	if (m_val->f_color > -1)
+		while (i++ < 500)
+			my_mlx_pixel_put(&m_val->img, x, i, (int)m_val->f_color);
+	i = 500;
+	if (m_val->r_color > -1)
+		while (i++ < 1000 - 1)
+			my_mlx_pixel_put(&m_val->img, x, i, (int)m_val->r_color);
+	ray = init_ray_struct(ray, m_val, x);
+	ray = determine_position(ray, m_val);
+	ray = hit(ray, m_val);
+	ray = how_much_draw(ray, m_val);
+	ray = put_texturize_pos_color(ray, m_val, x);
+	return (ray);
+}
+
 int	create_map(t_map *m_val, int i, int x)
 {
 	t_create_map	ray;
@@ -22,29 +40,20 @@ int	create_map(t_map *m_val, int i, int x)
 		m_val->img.i_ptr = NULL;
 	}
 	m_val->img.i_ptr = mlx_new_image(m_val->mlx_ptr, 1000, 1000);
-	m_val->img.addr = mlx_get_data_addr(m_val->img.i_ptr, &m_val->img.b_pixel, &m_val->img.l_len, &m_val->img.endian);
+	m_val->img.addr = mlx_get_data_addr(m_val->img.i_ptr, &m_val->img.b_pixel,
+			&m_val->img.l_len, &m_val->img.endian);
 	mlx_clear_window(m_val->mlx_ptr, m_val->w_ptr);
 	while (x < 1000)
 	{
-		i = 0;
-		if (m_val->f_color > -1)
-			while (i++ < 500)
-				my_mlx_pixel_put(&m_val->img, x, i, (int)m_val->f_color);
-		i = 500;
-		if (m_val->r_color > -1)
-			while (i++ < 1000 - 1)
-				my_mlx_pixel_put(&m_val->img, x, i, (int)m_val->r_color);
-		ray = init_ray_struct(ray, m_val, x);
-		ray = determine_position(ray, m_val);
-		ray = hit(ray, m_val);
-		ray = how_much_draw(ray, m_val);
-		ray = put_texturize_pos_color(ray, m_val, x);
+		ray = create_map_2(i, m_val, ray, x);
 		x++;
 	}
-	mlx_put_image_to_window(m_val->mlx_ptr, m_val->w_ptr, m_val->img.i_ptr, 0, 0);
+	mlx_put_image_to_window(m_val->mlx_ptr, m_val->w_ptr,
+		m_val->img.i_ptr, 0, 0);
 	m_val->pov.i_ptr = mlx_xpm_file_to_image(m_val->mlx_ptr,
 			"./textures/snipe_pov.xpm", &m_val->pov.i_w, &m_val->pov.i_h);
-	mlx_put_image_to_window(m_val->mlx_ptr, m_val->w_ptr, m_val->pov.i_ptr, 290, 400);
+	mlx_put_image_to_window(m_val->mlx_ptr, m_val->w_ptr,
+		m_val->pov.i_ptr, 290, 400);
 	mlx_destroy_image(m_val->mlx_ptr, m_val->pov.i_ptr);
 	return (0);
 }
