@@ -30,7 +30,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (!array)
 		return (0);
 	ft_memmove(array, s1, s1_size);
-	array[s1_size] = ' ';
 	ft_memmove(array + s1_size, s2, s2_size);
 	array[total_size] = '\0';
 	free((char *)s1);
