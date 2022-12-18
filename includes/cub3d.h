@@ -24,7 +24,6 @@
 # include <math.h>
 # include <stdbool.h>
 
-# include <stdint-gcc.h>
 # define FILE_EXTENSION ".cub"
 # define NO_STR_SEARCH "NO"
 # define SO_STR_SEARCH "SO"

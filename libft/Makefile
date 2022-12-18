@@ -76,7 +76,7 @@ CFLAGS	= -Wall -Wextra -Werror
 INCS	= .
 
 .c.o:
-		${CC} ${CFLAGS} -c $< -o ${<:.c=.o} -I${INCS}
+		gcc ${CFLAGS} -c $< -o ${<:.c=.o} -I${INCS}
 
 ${NAME}:	${OBJS}
 			${LIBC} ${NAME} ${OBJS}
