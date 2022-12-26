@@ -109,6 +109,9 @@ int	p_file(t_map *m_val, char *file_str, char *tmp_line, char *line)
 		{
 			if (line != NULL)
 				free(line);
+			if (!m_val->so_str || !m_val->we_str || !m_val->so_str
+				|| !m_val->no_str || !m_val->floor_str || !m_val->roof_str)
+				return (-1);
 			continue ;
 		}
 		tmp_line[ft_strlen(tmp_line) - 1] = '\0';

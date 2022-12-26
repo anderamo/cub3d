@@ -38,7 +38,7 @@ char	*ft_save(char *text)
 	return (str2);
 }
 
-int	ft_EOF(char *str)
+int	ft_eof(char *str)
 {
 	int	i;
 
@@ -97,7 +97,7 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	buf = malloc((BUFFER_SIZE + 1) * sizeof(char));
-	while (size != 0 && ft_EOF(text) == 0)
+	while (size != 0 && ft_eof(text) == 0)
 	{
 		size = read(fd, buf, BUFFER_SIZE);
 		if (size == -1)

@@ -60,27 +60,26 @@ int	create_f_colors(t_map *m_val, uint8_t i)
 	char	*tmp;
 	char	*line_item;
 
-	if (m_val->floor_str != NULL)
+	if (m_val->floor_str == NULL)
+		return (-1);
+	tmp = m_val->floor_str;
+	line_item = strtok_r(tmp, ",", &tmp);
+	while (line_item != NULL)
 	{
-		tmp = m_val->floor_str;
+		if (i == 0)
+			m_val->color_r = ft_atoi(line_item);
+		if (i == 1)
+			m_val->color_g = ft_atoi(line_item);
+		if (i == 2)
+		m_val->color_b = ft_atoi(line_item);
+		i++;
 		line_item = strtok_r(tmp, ",", &tmp);
-		while (line_item != NULL)
-		{
-			if (i == 0)
-				m_val->color_r = ft_atoi(line_item);
-			if (i == 1)
-				m_val->color_g = ft_atoi(line_item);
-			if (i == 2)
-			m_val->color_b = ft_atoi(line_item);
-			i++;
-			line_item = strtok_r(tmp, ",", &tmp);
-		}
-		if (i != 3 || m_val->color_r < 0 || m_val->color_r > 255
-			|| m_val->color_g < 0 || m_val->color_g > 255
-			|| m_val->color_b < 0 || m_val->color_b > 255)
-			return (-1);
-		m_val->f_color = rgb(m_val->color_r, m_val->color_g, m_val->color_b);
 	}
+	if (i != 3 || m_val->color_r < 0 || m_val->color_r > 255
+		|| m_val->color_g < 0 || m_val->color_g > 255
+		|| m_val->color_b < 0 || m_val->color_b > 255)
+		return (-1);
+	m_val->f_color = rgb(m_val->color_r, m_val->color_g, m_val->color_b);
 	return (1);
 }
 
@@ -89,26 +88,25 @@ int	create_r_colors(t_map *m_val, uint8_t i)
 	char	*tmp;
 	char	*line_item;
 
-	if (m_val->roof_str != NULL)
+	if (m_val->roof_str == NULL)
+		return (-1);
+	tmp = m_val->roof_str;
+	line_item = strtok_r(tmp, ",", &tmp);
+	while (line_item != NULL)
 	{
-		tmp = m_val->roof_str;
+		if (i == 0)
+			m_val->color_r = ft_atoi(line_item);
+		if (i == 1)
+			m_val->color_g = ft_atoi(line_item);
+		if (i == 2)
+			m_val->color_b = ft_atoi(line_item);
+		i++;
 		line_item = strtok_r(tmp, ",", &tmp);
-		while (line_item != NULL)
-		{
-			if (i == 0)
-				m_val->color_r = ft_atoi(line_item);
-			if (i == 1)
-				m_val->color_g = ft_atoi(line_item);
-			if (i == 2)
-				m_val->color_b = ft_atoi(line_item);
-			i++;
-			line_item = strtok_r(tmp, ",", &tmp);
-		}
-		if (i != 3 || m_val->color_r < 0 || m_val->color_r > 255
-			|| m_val->color_g < 0 || m_val->color_g > 255
-			|| m_val->color_b < 0 || m_val->color_b > 255)
-			return (-1);
-		m_val->r_color = rgb(m_val->color_r, m_val->color_g, m_val->color_b);
 	}
+	if (i != 3 || m_val->color_r < 0 || m_val->color_r > 255
+		|| m_val->color_g < 0 || m_val->color_g > 255
+		|| m_val->color_b < 0 || m_val->color_b > 255)
+		return (-1);
+	m_val->r_color = rgb(m_val->color_r, m_val->color_g, m_val->color_b);
 	return (1);
 }

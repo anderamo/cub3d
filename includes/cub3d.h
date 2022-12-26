@@ -148,7 +148,7 @@ t_create_map	put_texturize_pos_color(t_create_map ray, t_map *m_val, int x);
 t_create_map	determine_position(t_create_map ray, t_map *m_val);
 int				texturize_walls(t_map *map, uint8_t i);
 int				rgb(int r, int g, int b);
-int				destroy_map_struct(t_map *m_val);
+int				destroy_map_struct(t_map *m_val, bool print);
 t_create_map	put_texturize_pos_color(t_create_map ray, t_map *m_val, int x);
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int				check_map(t_map *m, int heigth, int width, t_check_map c);

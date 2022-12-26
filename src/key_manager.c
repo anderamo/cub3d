@@ -14,7 +14,7 @@
 
 int	close_win_x(t_map *vars)
 {
-	destroy_map_struct(vars);
+	destroy_map_struct(vars, 0);
 	exit(1);
 	return (-1);
 }
@@ -51,7 +51,7 @@ int	key_press_manager(int keycode, void *param)
 	m_val = (t_map *)param;
 	if (keycode == '5')
 	{
-		destroy_map_struct(m_val);
+		destroy_map_struct(m_val, 0);
 		exit(1);
 	}
 	if (keycode == 13)

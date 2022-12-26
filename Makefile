@@ -25,7 +25,7 @@ CC = gcc
 
 INC = -I./includes
 
-FLAGS	= -Wall -Wextra -Werror
+FLAGS	= -Wall -Wextra -Werror -g3
 
 .c.o:
 		gcc ${FLAGS} -c $< -o ${<:.c=.o} -I${INC}

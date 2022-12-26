@@ -26,6 +26,6 @@ int	ft_freetab(char **tab)
 		i++;
 	}
 	free(tab);
-    tab = NULL;
+	tab = NULL;
 	return (1);
 }
